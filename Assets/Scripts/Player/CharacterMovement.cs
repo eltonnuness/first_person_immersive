@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -8,6 +10,11 @@ public class CharacterMovement : MonoBehaviour
     private float playerSpeed = 2.0f;
     private float jumpHeight = 1.0f;
     private float gravityValue = -9.81f;
+    private float mouseSensivity = 100.0f;
+
+    private Vector2 moveInput = new Vector2();
+    private float jumpInput = 0.0f;
+    private Vector2 lookInput = new Vector2();
 
     private void Start()
     {
@@ -16,23 +23,32 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        HandleMovement();
+        HandleCameraLook();
+    }
+
+    private void HandleCameraLook()
+    {
+        Vector2 lookResult = new Vector3(lookInput.y, lookInput.x, 0) * Time.deltaTime * mouseSensivity;
+
+        transform.Rotate(lookResult);
+    }
+
+    private void HandleMovement()
+    {
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
 
-        // Horizontal input
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        move = Vector3.ClampMagnitude(move, 1f); // Optional: prevents faster diagonal movement
-
-        if (move != Vector3.zero)
+        if (moveInput != Vector2.zero)
         {
-            transform.forward = move;
+            //transform.forward = moveInput;
         }
 
         // Jump
-        if (Input.GetButtonDown("Jump") && groundedPlayer)
+        if (jumpInput != 0.0f && groundedPlayer)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
         }
@@ -41,7 +57,24 @@ public class CharacterMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
 
         // Combine horizontal and vertical movement
-        Vector3 finalMove = (move * playerSpeed) + (playerVelocity.y * Vector3.up);
+        Vector3 finalMove = (new Vector3(moveInput.x, 0, moveInput.y) * playerSpeed);
         controller.Move(finalMove * Time.deltaTime);
     }
+
+    // Input Broadcast
+    public void OnMove(InputValue value)
+    {
+        moveInput = value.Get<Vector2>();
+    }
+
+    public void OnJump(InputValue value)
+    {
+        jumpInput = value.Get<float>();
+    }
+    
+    public void OnLook(InputValue value)
+    {
+        lookInput = value.Get<Vector2>();
+    }
+
 }
