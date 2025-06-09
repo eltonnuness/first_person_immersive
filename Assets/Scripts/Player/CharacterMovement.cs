@@ -29,6 +29,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleCameraLook()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Vector2 lookResult = new Vector3(lookInput.y, lookInput.x, 0) * Time.deltaTime * mouseSensivity;
 
         transform.Rotate(lookResult);
