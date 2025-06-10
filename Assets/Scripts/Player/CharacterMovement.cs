@@ -30,9 +30,8 @@ public class CharacterMovement : MonoBehaviour
     private void HandleCameraLook()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Vector2 lookResult = new Vector3(lookInput.y, lookInput.x, 0) * Time.deltaTime * mouseSensivity;
-
-        transform.Rotate(lookResult);
+        float mouseX = lookInput.x * mouseSensivity * Time.deltaTime;
+        transform.Rotate(Vector3.up * mouseX);
     }
 
     private void HandleMovement()
@@ -41,11 +40,6 @@ public class CharacterMovement : MonoBehaviour
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
-        }
-
-        if (moveInput != Vector2.zero)
-        {
-            //transform.forward = moveInput;
         }
 
         // Jump
@@ -58,8 +52,8 @@ public class CharacterMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
 
         // Combine horizontal and vertical movement
-        Vector3 finalMove = (new Vector3(moveInput.x, 0, moveInput.y) * playerSpeed);
-        controller.Move(finalMove * Time.deltaTime);
+        Vector3 finalMove = transform.right * moveInput.x + transform.forward * moveInput.y;
+        controller.Move(finalMove * playerSpeed * Time.deltaTime);
     }
 
     // Input Broadcast
