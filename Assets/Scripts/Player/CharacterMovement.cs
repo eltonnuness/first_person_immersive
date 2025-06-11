@@ -1,24 +1,37 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CharacterMovement : MonoBehaviour
 {
+    [Header("Player Movement")]
+    [SerializeField] private float playerSpeed = 2.0f;
+    [SerializeField] private float jumpHeight = 2.0f;
+    [SerializeField] private float gravityValue = -4.00f;
+
+    [Header("Camera Look")]
+    [SerializeField] private float mouseSensitivity = 70f;
+    [SerializeField] private float lookUpLimit = 80f;
+    [SerializeField] private float lookDownLimit = -80f;
+
+    // References
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
-    private float playerSpeed = 2.0f;
-    private float jumpHeight = 1.0f;
-    private float gravityValue = -9.81f;
-    private float mouseSensivity = 100.0f;
+    private Camera playerCamera;
 
+    // Internal State
     private Vector2 moveInput = new Vector2();
-    private float jumpInput = 0.0f;
     private Vector2 lookInput = new Vector2();
+    private float xRotation = 0f;
+
 
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
+        playerCamera = gameObject.GetComponentInChildren<Camera>();
+        ConfigureCursor();
     }
 
     void Update()
@@ -29,8 +42,18 @@ public class CharacterMovement : MonoBehaviour
 
     private void HandleCameraLook()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        float mouseX = lookInput.x * mouseSensivity * Time.deltaTime;
+        // Rotate the player left and right (yaw)
+        // CharacterController movement is relative to the player's forward,
+        // so we rotate the entire player object for horizontal look.
+        transform.Rotate(Vector3.up * lookInput.x * mouseSensitivity * Time.deltaTime);
+
+        // Rotate the camera up and down (pitch)
+        xRotation -= lookInput.y * mouseSensitivity * Time.deltaTime;
+        xRotation = Mathf.Clamp(xRotation, lookDownLimit, lookUpLimit);
+
+        playerCamera.transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+        float mouseX = lookInput.x * mouseSensitivity * Time.deltaTime;
         transform.Rotate(Vector3.up * mouseX);
     }
 
@@ -39,21 +62,18 @@ public class CharacterMovement : MonoBehaviour
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
-            playerVelocity.y = 0f;
+            playerVelocity.y = -2f;
         }
-
-        // Jump
-        if (jumpInput != 0.0f && groundedPlayer)
-        {
-            playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
-        }
-
         // Apply gravity
         playerVelocity.y += gravityValue * Time.deltaTime;
 
+        Debug.Log($"Grounded Input {groundedPlayer}");
+
         // Combine horizontal and vertical movement
-        Vector3 finalMove = transform.right * moveInput.x + transform.forward * moveInput.y;
-        controller.Move(finalMove * playerSpeed * Time.deltaTime);
+        Vector3 moveDirection = transform.right * moveInput.x + transform.forward * moveInput.y;
+        //moveDirection.Normalize();
+        Vector3 finalMovement = (moveDirection * playerSpeed) + (Vector3.up * playerVelocity.y);
+        controller.Move(finalMovement * Time.deltaTime);
     }
 
     // Input Broadcast
@@ -64,12 +84,21 @@ public class CharacterMovement : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
-        jumpInput = value.Get<float>();
+        if (controller.isGrounded)
+        {
+            playerVelocity.y = jumpHeight;
+        }
     }
     
     public void OnLook(InputValue value)
     {
         lookInput = value.Get<Vector2>();
+    }
+
+    private static void ConfigureCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
 }
