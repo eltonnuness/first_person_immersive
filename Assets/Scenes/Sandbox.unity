@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6e1340dd81706a540b5c034bd2a03bea, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 79689647e7168744a898c6917422a630, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -3551,10 +3551,10 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6.21
-  m_Range: 2.091014
-  m_SpotAngle: 89.079926
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 7.19
+  m_Range: 2.0875325
+  m_SpotAngle: 112.23324
+  m_InnerSpotAngle: 61.652996
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -3590,7 +3590,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -3614,7 +3614,7 @@ Transform:
   m_GameObject: {fileID: 1299420943}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.442, y: 1.573, z: -0.336}
+  m_LocalPosition: {x: 0.442, y: 1.562, z: -0.336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
