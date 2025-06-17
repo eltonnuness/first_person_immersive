@@ -67,8 +67,6 @@ public class CharacterMovement : MonoBehaviour
         // Apply gravity
         playerVelocity.y += gravityValue * Time.deltaTime;
 
-        Debug.Log($"Grounded Input {groundedPlayer}");
-
         // Combine horizontal and vertical movement
         Vector3 moveDirection = transform.right * moveInput.x + transform.forward * moveInput.y;
         //moveDirection.Normalize();

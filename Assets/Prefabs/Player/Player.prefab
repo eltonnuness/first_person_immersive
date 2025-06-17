@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1169150604685578222}
   - component: {fileID: 3298531160876426055}
   - component: {fileID: 1278530827451102245}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 200
   field of view: 60.000004
   orthographic: 0
@@ -481,6 +481,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   descriptionLabel: {fileID: 5973968315529956422}
+  MaxDistanceView: 0.35
+  mask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!143 &4199490930167864128
 CharacterController:
   m_ObjectHideFlags: 0
