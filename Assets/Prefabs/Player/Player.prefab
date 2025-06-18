@@ -246,6 +246,69 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &4977004249568078528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799847645464874500}
+  - component: {fileID: 1782035204820011344}
+  m_Layer: 0
+  m_Name: FootstepsSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1799847645464874500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977004249568078528}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4577643002446535889}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782035204820011344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4977004249568078528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -152148190
+      Data2: 1164661813
+      Data3: -1335779427
+      Data4: -966478567
+    Path: event:/Main/Character/Footsteps
+  Event: 
+  EventPlayTrigger: 11
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5104981875113081530
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,8 +456,8 @@ GameObject:
   - component: {fileID: 4577643002446535889}
   - component: {fileID: 8562607054118091796}
   - component: {fileID: 4901865942229395231}
-  - component: {fileID: 223961785822503465}
   - component: {fileID: 4199490930167864128}
+  - component: {fileID: 223961785822503465}
   - component: {fileID: 4589041133710609694}
   m_Layer: 0
   m_Name: Player
@@ -417,6 +480,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 679670198496992583}
+  - {fileID: 1799847645464874500}
   - {fileID: 1080699914446867966}
   - {fileID: 4146555535579289113}
   m_Father: {fileID: 0}
@@ -469,24 +533,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &223961785822503465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5148621086821499001}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9cc89158c43cc429a68615b78e4081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  descriptionLabel: {fileID: 5973968315529956422}
-  MaxDistanceView: 0.35
-  mask:
-    serializedVersion: 2
-    m_Bits: 1
-  raycastOffset: 0.1
 --- !u!143 &4199490930167864128
 CharacterController:
   m_ObjectHideFlags: 0
@@ -512,6 +558,24 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &223961785822503465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5148621086821499001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9cc89158c43cc429a68615b78e4081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descriptionLabel: {fileID: 5973968315529956422}
+  MaxDistanceView: 0.35
+  mask:
+    serializedVersion: 2
+    m_Bits: 1
+  raycastOffset: 0.1
 --- !u!114 &4589041133710609694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b7cebecc70ce424c967d0033d7c15d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  footstepsGO: {fileID: 4977004249568078528}
 --- !u!1 &6935919934744343033
 GameObject:
   m_ObjectHideFlags: 0
