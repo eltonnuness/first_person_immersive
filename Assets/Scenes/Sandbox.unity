@@ -1003,7 +1003,7 @@ GameObject:
   - component: {fileID: 209311418}
   - component: {fileID: 209311419}
   m_Layer: 0
-  m_Name: Cube (19)
+  m_Name: DragableObject
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
