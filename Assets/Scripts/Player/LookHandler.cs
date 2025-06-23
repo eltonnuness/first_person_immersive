@@ -4,18 +4,23 @@ using UnityEngine.InputSystem;
 
 public class LookHandler : MonoBehaviour
 {
+    // References
     [SerializeField] private TMP_Text descriptionLabel;
     [SerializeField] private float MaxDistanceView = 0.50f;
     [SerializeField] private LayerMask mask;
+    private PlayerController playerController;
 
+    // States
     private Camera playerCamera;
     private GameObject lookinObject;
     public float raycastOffset = 0.1f;
+    private GameObject interactedObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerCamera = GetComponentInChildren<Camera>();
+        playerController = GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -59,7 +64,15 @@ public class LookHandler : MonoBehaviour
         {
             if (lookinObject != null)
             {
-                lookinObject.BroadcastMessage("OnMessage");
+                lookinObject.BroadcastMessage(BroadcastEvents.ON_MESSAGE);
+
+                if (playerController.GetInteractedObject() == null)
+                {
+                    playerController.SetInteractedObject(lookinObject);
+                } else
+                {
+                    playerController.SetInteractedObject(null);
+                }
             }
         }
     }
