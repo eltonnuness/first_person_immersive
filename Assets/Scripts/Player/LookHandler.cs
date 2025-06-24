@@ -30,7 +30,7 @@ public class LookHandler : MonoBehaviour
         RaycastHit hit;
         Ray ray = playerCamera.ScreenPointToRay(screenCenter);
 
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.red);
 
         // This offset is necessary because if raycast is too close of camera this hit itself and dont propagate even if use layer masks
         Vector3 rayOrigin = ray.origin + ray.direction * raycastOffset;
@@ -40,7 +40,7 @@ public class LookHandler : MonoBehaviour
         {
             Transform objectHit = hit.transform;
 
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.green);
+            Debug.DrawRay(ray.origin, ray.direction * 10, Color.green);
 
             if (objectHit.CompareTag("Item"))
             {
