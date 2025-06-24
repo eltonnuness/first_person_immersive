@@ -15,7 +15,7 @@ public class ItemScript : MonoBehaviour
     }
 
     // Message
-    void OnMessage()
+    void OnLookAndInteract()
     {
         gameObject.AddComponent<Rigidbody>();
     }

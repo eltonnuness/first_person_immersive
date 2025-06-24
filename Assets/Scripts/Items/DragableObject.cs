@@ -19,7 +19,16 @@ public class DragableObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateInteractPosition();
         HandleRigidbodyKitematic();
+    }
+
+    private void UpdateInteractPosition()
+    {
+        if (isActive)
+        {
+            transform.position = WorldInfo.Instance.GetPlayer().GetInteractPosition().position;
+        }
     }
 
     private void HandleRigidbodyKitematic()
@@ -28,16 +37,7 @@ public class DragableObject : MonoBehaviour
     }
 
     // Message
-    void OnMessage(){
+    void OnLookAndInteract(){
         isActive = !isActive;
-    }
-
-    // Message
-    void OnDragablePosition(Vector3 position)
-    {
-        if (isActive)
-        {
-            transform.position = position;
-        }
     }
 }

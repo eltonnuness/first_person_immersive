@@ -20,7 +20,7 @@ public class LookHandler : MonoBehaviour
     void Start()
     {
         playerCamera = GetComponentInChildren<Camera>();
-        playerController = GetComponent<PlayerController>();
+        playerController = WorldInfo.Instance.GetPlayer();
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class LookHandler : MonoBehaviour
 
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
 
-        // This offset is necessary because if raycast is too close of camera this hit itself and dont propagate even if use layer maskss
+        // This offset is necessary because if raycast is too close of camera this hit itself and dont propagate even if use layer masks
         Vector3 rayOrigin = ray.origin + ray.direction * raycastOffset;
         Ray finalRay = new(rayOrigin, ray.direction);
 
@@ -64,7 +64,7 @@ public class LookHandler : MonoBehaviour
         {
             if (lookinObject != null)
             {
-                lookinObject.BroadcastMessage(BroadcastEvents.ON_MESSAGE);
+                lookinObject.BroadcastMessage(BroadcastEvents.ON_LOOK_AND_INTERACT);
 
                 if (playerController.GetInteractedObject() == null)
                 {

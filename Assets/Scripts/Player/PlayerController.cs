@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Transform interactPosition;
+
     private GameObject interactedObject;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,5 +23,7 @@ public class PlayerController : MonoBehaviour
         interactedObject = obj;
     }
 
-    public GameObject GetInteractedObject() => interactedObject; 
+    public GameObject GetInteractedObject() => interactedObject;
+
+    public Transform GetInteractPosition() => interactPosition;
 }
