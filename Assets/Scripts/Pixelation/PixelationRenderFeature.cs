@@ -66,7 +66,7 @@ namespace PSX
 
             UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
             TextureHandle srcCamColor = resourceData.cameraColor;
-            Debug.Log($"descriptorName: {srcCamColor.GetDescriptor(renderGraph).name}");
+            //Debug.Log($"descriptorName: {srcCamColor.GetDescriptor(renderGraph).name}");
 
             var stack = VolumeManager.instance.stack;
 
@@ -75,7 +75,7 @@ namespace PSX
             if (!this.pixelation.IsActive()) { return; }
 
             // Render (start)
-            Debug.Log("Start render");
+            //Debug.Log("Start render");
             var source = srcCamColor;
 
             //getting camera width and height 
