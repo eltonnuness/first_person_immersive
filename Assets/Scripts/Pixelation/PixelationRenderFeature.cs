@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
@@ -9,11 +10,22 @@ namespace PSX
 {
     public class PixelationRenderFeature : ScriptableRendererFeature
     {
+        [SerializeField] private Shader shader;
+
         PixelationPass pixelationPass;
+        Material pixelationMaterial;
 
         public override void Create()
         {
-            pixelationPass = new PixelationPass(RenderPassEvent.BeforeRenderingPostProcessing);
+            if (shader == null)
+            {
+                Debug.LogError("Shader not found.");
+                return;
+            }
+            this.pixelationMaterial = new Material(shader);
+
+
+            pixelationPass = new PixelationPass(RenderPassEvent.BeforeRenderingPostProcessing, pixelationMaterial);
         }
 
         //ScripstableRendererFeature is an abstract class, you need this method
@@ -21,6 +33,19 @@ namespace PSX
         {
             renderer.EnqueuePass(pixelationPass);
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (Application.isPlaying)
+            {
+                Destroy(pixelationMaterial);
+            }
+            else
+            {
+                DestroyImmediate(pixelationMaterial);
+            }
+        }
+
     }
     
     
@@ -30,8 +55,6 @@ namespace PSX
         {
             internal TextureHandle textureToRead;
         }
-
-        private static readonly string shaderPath = "PostEffect/Pixelation";
         
         //PROPERTIES
         static readonly int WidthPixelation = Shader.PropertyToID("_WidthPixelation");
@@ -41,16 +64,10 @@ namespace PSX
         Pixelation pixelation;
         Material pixelationMaterial;
 
-        public PixelationPass(RenderPassEvent evt)
+        public PixelationPass(RenderPassEvent evt, Material pixelationMaterial)
         {
             renderPassEvent = evt;
-            var shader = Shader.Find(shaderPath);
-            if (shader == null)
-            {
-                Debug.LogError("Shader not found.");
-                return;
-            }
-            this.pixelationMaterial = new Material(shader);
+            this.pixelationMaterial = pixelationMaterial;
         }
 
         public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
