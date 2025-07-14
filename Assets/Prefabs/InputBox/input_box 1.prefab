@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 6460412532269166690}
   prefabSpawnList:
-  - {fileID: 2365717286906028686, guid: 92142148c9e4051499e69547c3f9dba5, type: 3}
+  - {fileID: 7664262090186689550, guid: 84c71f8e8a6a8914283ba41cd69e4e71, type: 3}
 --- !u!1 &9071910866527501237
 GameObject:
   m_ObjectHideFlags: 0
