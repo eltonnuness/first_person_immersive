@@ -40,4 +40,7 @@ public class WeigthSensor : MonoBehaviour
             items.Remove(piece.gameObject.GetInstanceID());
         }
     }
+
+    public Dictionary<int, Piece> GetItems() => items;
+
 }

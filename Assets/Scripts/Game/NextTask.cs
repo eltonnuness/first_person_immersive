@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ItemScript : MonoBehaviour
+public class NextTask : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -11,12 +11,11 @@ public class ItemScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    // Message
     void OnLookAndInteract()
     {
-        
+        WorldInfo.Instance.GetGameDirector().NextTask();
     }
 }

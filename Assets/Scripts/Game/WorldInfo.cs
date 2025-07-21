@@ -4,6 +4,7 @@ using UnityEngine;
 public class WorldInfo : MonoBehaviour
 {
     private PlayerController playerController;
+    private GameDirector gameDirector;
 
     public static WorldInfo Instance { get; private set; }
 
@@ -11,8 +12,10 @@ public class WorldInfo : MonoBehaviour
     {
         Instance = this;
         playerController = GameObject.FindGameObjectWithTag(GameTags.Player).GetComponent<PlayerController>();
+        gameDirector = GetComponent<GameDirector>();
     }
 
     public PlayerController GetPlayer() => playerController;
+    public GameDirector GetGameDirector() => gameDirector;
 
 }
