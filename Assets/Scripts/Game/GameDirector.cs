@@ -8,13 +8,12 @@ public class GameDirector : MonoBehaviour
     [SerializeField] private TaskSO[] taskList;
 
     [SerializeField] private Terminal terminal;
+    [SerializeField] private WeigthSensor weigthSensor;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
     }
@@ -22,16 +21,24 @@ public class GameDirector : MonoBehaviour
     private void ReceivedTask(int taskNumber)
     {
         TaskSO task = taskList[taskNumber - 1];
-        terminal.WriteOnScreen($"You received a new task: Weigth Between MIN={task.totalWeigthMin} / MAX={task.totalWeigthMax}");
+        terminal.WriteOnScreen($"New Task {task.totalWeigthMin}/{task.totalWeigthMax}");
     }
 
-    public void VerifyTask(Piece[] pieces)
+    public void VerifyTask()
     {
-        
+        TaskSO task = taskList[currentTask - 1];
+        int total = weigthSensor.GetTotal();
+
+        if (total >= task.totalWeigthMin && total <= task.totalWeigthMax)
+        {
+            weigthSensor.Delivery();
+        }
+
     }
 
     public void NextTask()
     {
+        // Verify if can change task
         currentTask++;
         ReceivedTask(currentTask);
     }

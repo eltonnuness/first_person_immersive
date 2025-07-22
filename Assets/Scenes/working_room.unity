@@ -2389,6 +2389,7 @@ MonoBehaviour:
   taskList:
   - {fileID: 11400000, guid: bab78806210aa214995db5cc2a11256a, type: 2}
   terminal: {fileID: 8827420992736478203}
+  weigthSensor: {fileID: 1256899955}
 --- !u!1 &406712638
 GameObject:
   m_ObjectHideFlags: 0
@@ -10188,6 +10189,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1050338131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2577228611748265317, guid: 1adceed389db69449b464f4d09d38870, type: 3}
+  m_PrefabInstance: {fileID: 1116829745}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1068307210
 GameObject:
   m_ObjectHideFlags: 0
@@ -10839,7 +10845,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2577228611748265317, guid: 1adceed389db69449b464f4d09d38870, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1384801581}
   m_SourcePrefab: {fileID: 100100000, guid: 1adceed389db69449b464f4d09d38870, type: 3}
 --- !u!1 &1229265202
 GameObject:
@@ -12134,6 +12143,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2318700868494504265, guid: 1adceed389db69449b464f4d09d38870, type: 3}
   m_PrefabInstance: {fileID: 1116829745}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1384801581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050338131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf630497d3977d43b1dbe27efc430d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1455272485
 Mesh:
   m_ObjectHideFlags: 0

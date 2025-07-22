@@ -6,6 +6,8 @@ public class WeigthSensor : MonoBehaviour
     [SerializeField] private TMPro.TMP_Text text;
     private Dictionary<int, Piece> items = new Dictionary<int, Piece>();
 
+    int total = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,11 +17,12 @@ public class WeigthSensor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int total = 0;
+        int calculateTotal = 0;
         foreach (var item in items)
         {
-            total += item.Value.GetWeight();
+            calculateTotal += item.Value.GetWeight();
         }
+        total = calculateTotal;
         text.SetText(total.ToString());
     }
 
@@ -42,5 +45,14 @@ public class WeigthSensor : MonoBehaviour
     }
 
     public Dictionary<int, Piece> GetItems() => items;
+    public int GetTotal() => total;
+
+    public void Delivery()
+    {
+        foreach (var item in items)
+        {
+            Destroy(item.Value.gameObject);
+        }
+    }
 
 }

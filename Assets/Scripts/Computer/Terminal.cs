@@ -17,7 +17,7 @@ public class Terminal : MonoBehaviour
 
     void Start()
     {
-        WriteOnScreen(TEXT_1);
+        //WriteOnScreen(TEXT_1);
     }
 
     void Update()
@@ -27,12 +27,12 @@ public class Terminal : MonoBehaviour
 
     public void WriteOnScreen(string text)
     {
-        ClearText();
         StartCoroutine(StartWriting(text));
     }
 
     IEnumerator StartWriting(string text)
     {
+        ClearText();
         char[] words = text.ToCharArray();
         
 
