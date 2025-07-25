@@ -21,7 +21,8 @@ public class GameDirector : MonoBehaviour
     private void ReceivedTask(int taskNumber)
     {
         TaskSO task = taskList[taskNumber - 1];
-        terminal.WriteOnScreen($"New Task {task.totalWeigthMin}/{task.totalWeigthMax}");
+        terminal.WriteOnScreen($"New Task\n" +
+            $"$ {task.totalWeigthMin}/{task.totalWeigthMax}");
     }
 
     public void VerifyTask()

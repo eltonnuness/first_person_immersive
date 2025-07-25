@@ -53,6 +53,7 @@ public class WeigthSensor : MonoBehaviour
         {
             Destroy(item.Value.gameObject);
         }
+        items.Clear();
     }
 
 }

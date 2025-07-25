@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Terminal : MonoBehaviour
 {
-    // Constants (I need put empty space between letters to break line as terminal.)
-    private readonly string TEXT_1 = "H e l l o  W o r l d";
-    private readonly string TEXT_2 = "M y  n a m e  i s  ? ? ?";
-
     // References
     [SerializeField] private TMPro.TMP_Text screenText;
 
@@ -46,6 +42,6 @@ public class Terminal : MonoBehaviour
         }
     }
 
-    private void SetTerminalText(string text) => screenText.SetText($"$  {text} _");
+    private void SetTerminalText(string text) => screenText.SetText($"$ {text}_");
     private void ClearText() => screenText.SetText("$  _");
 }
