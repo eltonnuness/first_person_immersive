@@ -7821,7 +7821,7 @@ MonoBehaviour:
   isEnabled: 1
   widthPixelation: 256
   heightPixelation: 256
-  colorPrecision: 64
+  colorPrecision: 16
 --- !u!1 &875366174
 GameObject:
   m_ObjectHideFlags: 0
